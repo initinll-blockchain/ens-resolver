@@ -46,6 +46,19 @@
 				} else {
                     alert("Please enter address or ens");
                 }
+
+                if (ens) {
+                    const resolver = await provider.getResolver(ens);
+                    if (resolver) {
+                        console.log("Bitcoin Address - ", await resolver.getAddress(0));
+                        console.log("Litecoin Address - ", await resolver.getAddress(2));
+                        console.log("Dogecoin Address - ", await resolver.getAddress(3));
+                        console.log(await resolver.getAvatar());
+                        console.log(await resolver.getText("email"));
+                        console.log(await resolver.getText("url"));
+                        console.log(await resolver.getText("com.twitter"));
+                    }                    
+                }                
 			}
 		} catch (error) {
             err = "not found";
